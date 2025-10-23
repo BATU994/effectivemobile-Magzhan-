@@ -82,3 +82,40 @@ lib/
    │        └─ widgets/
    │
    └─ main.dart
+
+
+
+## Project Setup
+
+This project was built with:
+
+- **Flutter version:** 3.13.0
+- **Dart SDK version:** >=3.9.0 <4.0.0
+
+### Dependencies
+
+| Package                  | Version   |
+|---------------------------|-----------|
+| flutter                   | sdk       |
+| cupertino_icons           | ^1.0.8    |
+| dio                       | ^5.9.0    |
+| flutter_bloc              | ^9.1.1    |
+| bloc                      | ^9.0.1    |
+| get_it                     | ^8.2.0    |
+| hive                      | ^2.2.3    |
+| hive_flutter              | ^1.1.0    |
+| freezed_annotation        | ^2.4.4    |
+| json_annotation           | ^4.9.0    |
+| injectable                | ^2.5.2    |
+| nitrite_hive_adapter      | ^1.1.0    |
+
+### Dev Dependencies
+
+| Package                  | Version   |
+|---------------------------|-----------|
+| analyzer                  | ^5.13.0   |
+| hive_generator            | ^2.0.1    |
+| freezed                   | ^2.4.0    |
+| json_serializable          | ^6.8.0    |
+| build_runner              | ^2.4.9    |
+
