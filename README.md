@@ -58,29 +58,27 @@ flutter run
 flutter build apk # Android
 flutter build ios
 
-
-Структура проекта
+```text
 lib/
 └─ src/
    ├─ core/
-   │  ├─ di/        
-   │  ├─ network/    
-   │  └─ utils/       
+   │  ├─ di/          # Dependency Injection
+   │  ├─ network/     # API client (Dio)
+   │  └─ utils/       # Constants and utilities
    │
    ├─ features/
    │  └─ character/
    │     ├─ data/
-   │     │  ├─ models/        
-   │     │  └─ repositories/  
+   │     │  ├─ models/
+   │     │  └─ repositories/
    │     │
    │     ├─ domain/
    │     │  ├─ repositories/
-   │     │  └─ usecases/      
+   │     │  └─ usecases/
    │     │
    │     └─ presentation/
-   │        ├─ bloc/          
-   │        ├─ pages/         
-   │        └─ widgets/        
+   │        ├─ bloc/
+   │        ├─ pages/
+   │        └─ widgets/
    │
-   └─ main.dart               
-
+   └─ main.dart
