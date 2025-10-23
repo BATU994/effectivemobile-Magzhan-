@@ -42,3 +42,39 @@
 git clone https://github.com/BATU994/rick-and-morty-app.git
 cd rick-and-morty-app
 ```
+
+Устанавливаем зависимости
+flutter pub get
+
+После этого
+
+Запуск приложения
+flutter run
+
+После этого
+
+Сборка релизной версии
+
+flutter build apk # Android
+flutter build ios
+
+Структура проекта
+lib/
+└─ src/
+├─ core/
+│ ├─ di/ # Dependency injection
+│ ├─ network/ # Клиент API (Dio)
+│ └─ utils/ # Константы и утилиты
+├─ features/
+│ └─ character/
+│ ├─ data/
+│ │ ├─ models/
+│ │ └─ repositories/
+│ ├─ domain/
+│ │ ├─ repositories/
+│ │ └─ usecases/
+│ └─ presentation/
+│ ├─ bloc/
+│ ├─ pages/
+│ └─ widgets/
+└─ main.dart
