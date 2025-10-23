@@ -1,16 +1,44 @@
-# effectivemobiletask
+# Rick and Morty Characters App
 
-A new Flutter project.
+Приложение на Flutter для просмотра персонажей мультсериала "Рик и Морти".  
+Позволяет просматривать список персонажей, добавлять их в избранное и работать оффлайн с кешированными данными.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Функциональные возможности
 
-A few resources to get you started if this is your first Flutter project:
+### Главный экран (Список персонажей)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Отображение персонажей в виде карточек.
+- Карточка содержит:
+  - Изображение персонажа.
+  - Имя персонажа.
+  - Дополнительные характеристики (статус, вид, локация).
+  - Кнопку "звездочка" для добавления/удаления из избранного.
+- Пагинация: подгрузка новых персонажей при скролле вниз.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Экран "Избранное"
+
+- Отображение списка избранных персонажей.
+- Возможность сортировки по имени или статусу.
+- Удаление персонажа из избранного.
+
+### Навигация
+
+- BottomNavigationBar для переключения между главным экраном и экраном избранного.
+
+### Дополнительно
+
+- Кеширование данных для оффлайн-доступа.
+- Быстрая работа с локальной базой данных (Hive).
+
+---
+
+## Установка и запуск
+
+1. **Клонируем репозиторий**
+
+```bash
+git clone https://github.com/BATU994/rick-and-morty-app.git
+cd rick-and-morty-app
+```
