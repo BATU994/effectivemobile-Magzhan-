@@ -62,21 +62,25 @@ flutter build ios
 Структура проекта
 lib/
 └─ src/
-├─ core/
-│ ├─ di/ # Dependency injection
-│ ├─ network/ # Клиент API (Dio)
-│ └─ utils/ # Константы и утилиты
-├─ features/
-│ └─ character/
-│ ├─ data/
-│ │ ├─ models/
-│ │ └─ repositories/
-│ ├─ domain/
-│ │ ├─ repositories/
-│ │ └─ usecases/
-│ └─ presentation/
-│ ├─ bloc/
-│ ├─ pages/
-│ └─ widgets/
-└─ main.dart
+   ├─ core/
+   │  ├─ di/        
+   │  ├─ network/    
+   │  └─ utils/       
+   │
+   ├─ features/
+   │  └─ character/
+   │     ├─ data/
+   │     │  ├─ models/        
+   │     │  └─ repositories/  
+   │     │
+   │     ├─ domain/
+   │     │  ├─ repositories/
+   │     │  └─ usecases/      
+   │     │
+   │     └─ presentation/
+   │        ├─ bloc/          
+   │        ├─ pages/         
+   │        └─ widgets/        
+   │
+   └─ main.dart               
 
