@@ -58,6 +58,7 @@ flutter run
 flutter build apk # Android
 flutter build ios
 
+
 Структура проекта
 lib/
 └─ src/
@@ -78,3 +79,4 @@ lib/
 │ ├─ pages/
 │ └─ widgets/
 └─ main.dart
+
