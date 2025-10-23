@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:effectivemobiletask/src/features/character/bloc/bloc/character_bloc.dart';
 import 'package:effectivemobiletask/src/features/character/data/repositories/character_repository_impl.dart';
 import 'package:effectivemobiletask/src/features/character/domain/repositories/character_repo.dart';
 
 import 'package:effectivemobiletask/src/core/network/dio_client.dart';
 import 'package:effectivemobiletask/src/features/character/domain/usecases/get_characters.dart';
+import 'package:effectivemobiletask/src/features/character/presentation/bloc/character_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -29,6 +29,6 @@ void setupDI() {
 
   //  Bloc
   getIt.registerFactory<CharacterBloc>(
-    () => CharacterBloc(characterRepo: getIt<CharacterRepo>()),
+    () => CharacterBloc(getIt<GetCharactersUseCase>()),
   );
 }

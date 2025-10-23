@@ -6,19 +6,20 @@ part of 'character_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_CharacterModel _$CharacterModelFromJson(Map<String, dynamic> json) =>
-    _CharacterModel(
+_$CharacterModelImpl _$$CharacterModelImplFromJson(Map<String, dynamic> json) =>
+    _$CharacterModelImpl(
       info: Info.fromJson(json['info'] as Map<String, dynamic>),
       results: (json['results'] as List<dynamic>)
           .map((e) => Result.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$CharacterModelToJson(_CharacterModel instance) =>
-    <String, dynamic>{'info': instance.info, 'results': instance.results};
+Map<String, dynamic> _$$CharacterModelImplToJson(
+  _$CharacterModelImpl instance,
+) => <String, dynamic>{'info': instance.info, 'results': instance.results};
 
-_Result _$ResultFromJson(Map<String, dynamic> json) => _Result(
-  id: (json['id'] as num).toInt(),
+_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
+  id: json['id'] as int,
   name: json['name'] as String,
   status: json['status'] as String,
   species: json['species'] as String,
@@ -26,25 +27,27 @@ _Result _$ResultFromJson(Map<String, dynamic> json) => _Result(
   image: json['image'] as String,
 );
 
-Map<String, dynamic> _$ResultToJson(_Result instance) => <String, dynamic>{
-  'id': instance.id,
-  'name': instance.name,
-  'status': instance.status,
-  'species': instance.species,
-  'gender': instance.gender,
-  'image': instance.image,
-};
+Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'status': instance.status,
+      'species': instance.species,
+      'gender': instance.gender,
+      'image': instance.image,
+    };
 
-_Info _$InfoFromJson(Map<String, dynamic> json) => _Info(
-  count: (json['count'] as num).toInt(),
-  pages: (json['pages'] as num).toInt(),
+_$InfoImpl _$$InfoImplFromJson(Map<String, dynamic> json) => _$InfoImpl(
+  count: json['count'] as int,
+  pages: json['pages'] as int,
   next: json['next'] as String?,
   prev: json['prev'] as String?,
 );
 
-Map<String, dynamic> _$InfoToJson(_Info instance) => <String, dynamic>{
-  'count': instance.count,
-  'pages': instance.pages,
-  'next': instance.next,
-  'prev': instance.prev,
-};
+Map<String, dynamic> _$$InfoImplToJson(_$InfoImpl instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'pages': instance.pages,
+      'next': instance.next,
+      'prev': instance.prev,
+    };

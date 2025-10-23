@@ -1,17 +1,22 @@
-import 'package:effectivemobiletask/src/core/di/di.dart';
-import 'package:effectivemobiletask/src/features/character/bloc/bloc/character_bloc.dart';
-import 'package:effectivemobiletask/src/features/character/domain/repositories/character_repo.dart';
-import 'package:effectivemobiletask/src/features/character/presentation/pages/MainPage.dart';
+import 'package:effectivemobiletask/src/features/character/data/models/favorite_character_model.dart';
+import 'package:effectivemobiletask/src/features/character/presentation/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() async {
+import 'package:effectivemobiletask/src/core/di/di.dart';
+import 'package:effectivemobiletask/src/features/character/presentation/bloc/character_bloc.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupDI();
-  await Hive.initFlutter();
 
-  runApp(MyApp());
+  await Hive.initFlutter();
+  Hive.registerAdapter(FavoriteCharacterModelAdapter());
+  await Hive.openBox<FavoriteCharacterModel>('favorites');
+
+  setupDI();
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,8 +27,13 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (_) => getIt<CharacterBloc>(),
       child: MaterialApp(
-        title: 'Flutter Dependency Injection',
-        home: CharacterPage(),
+        debugShowCheckedModeBanner: false,
+        title: 'Effective Mobile Task',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+          useMaterial3: true,
+        ),
+        home: const Homepage(),
       ),
     );
   }

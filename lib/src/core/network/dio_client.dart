@@ -8,7 +8,20 @@ class DioClient {
       ..connectTimeout = const Duration(seconds: 5)
       ..receiveTimeout = const Duration(seconds: 5);
     _dio.interceptors.add(
-      LogInterceptor(requestBody: true, responseBody: true),
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          print('Request: ${options.uri}');
+          handler.next(options);
+        },
+        onResponse: (response, handler) {
+          print('Response: ${response.statusCode}');
+          handler.next(response);
+        },
+        onError: (DioException e, handler) {
+          print('Error: ${e.message}');
+          handler.next(e);
+        },
+      ),
     );
   }
 
