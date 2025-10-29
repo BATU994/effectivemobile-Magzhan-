@@ -32,6 +32,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
         ),
       );
     } catch (e) {
+      // show user-friendly message (repository already maps nice text)
       emit(CharacterState.error(e.toString()));
     }
   }
@@ -107,7 +108,6 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
         }
       } catch (e) {
         emit(current.copyWith(isLoadingMore: false));
-        emit(CharacterState.error(e.toString()));
       }
     }
   }

@@ -57,6 +57,7 @@ flutter run
 
 flutter build apk # Android
 flutter build ios
+<<<<<<< HEAD
 
 ```text
 lib/
@@ -119,3 +120,5 @@ This project was built with:
 | json_serializable          | ^6.8.0    |
 | build_runner              | ^2.4.9    |
 
+=======
+>>>>>>> 4a78c89 (second commit upgrade)

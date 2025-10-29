@@ -5,8 +5,8 @@ class DioClient {
   DioClient(this._dio) {
     _dio.options
       ..baseUrl = 'https://rickandmortyapi.com/api/'
-      ..connectTimeout = const Duration(seconds: 5)
-      ..receiveTimeout = const Duration(seconds: 5);
+      ..connectTimeout = const Duration(seconds: 8)
+      ..receiveTimeout = const Duration(seconds: 8);
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
@@ -30,11 +30,7 @@ class DioClient {
     String path,
     Map<String, dynamic>? queryParameters,
   ) async {
-    try {
-      return await _dio.get(path, queryParameters: queryParameters);
-    } on DioException catch (error) {
-      throw Exception(error.toString());
-    }
+    return _dio.get(path, queryParameters: queryParameters);
   }
 
   //Другие методы могут быть написаны тут POST,DELETE,PATCH

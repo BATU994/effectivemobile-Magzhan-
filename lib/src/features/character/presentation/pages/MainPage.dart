@@ -1,10 +1,10 @@
-import 'package:effectivemobiletask/src/features/character/data/models/favorite_character_model.dart';
 import 'package:effectivemobiletask/src/features/character/presentation/bloc/character_bloc.dart';
 import 'package:effectivemobiletask/src/features/character/presentation/bloc/character_event.dart';
 import 'package:effectivemobiletask/src/features/character/presentation/bloc/character_state.dart';
+import 'package:effectivemobiletask/src/features/character/presentation/bloc/favorites_cubit.dart';
+import 'package:effectivemobiletask/src/features/character/presentation/bloc/favorties_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
 
 class CharacterScreen extends StatefulWidget {
   const CharacterScreen({super.key});
@@ -16,13 +16,10 @@ class CharacterScreen extends StatefulWidget {
 class _CharacterScreenState extends State<CharacterScreen> {
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _searchController = TextEditingController();
-  late Box<FavoriteCharacterModel> favoritesBox;
 
   @override
   void initState() {
     super.initState();
-    favoritesBox = Hive.box<FavoriteCharacterModel>('favorites');
-
     context.read<CharacterBloc>().add(const CharacterEvent.started());
 
     _scrollController.addListener(() {
@@ -37,10 +34,6 @@ class _CharacterScreenState extends State<CharacterScreen> {
         CharacterEvent.search(_searchController.text),
       );
     });
-  }
-
-  bool isFavorite(int id) {
-    return favoritesBox.values.any((fav) => fav.id == id);
   }
 
   @override
@@ -113,12 +106,32 @@ class _CharacterScreenState extends State<CharacterScreen> {
                               }
 
                               final one = visibleCharacters[index];
-                              final isFavorite = favoritesBox.values.any(
+                              final favState = context
+                                  .watch<FavoritesBloc>()
+                                  .state;
+                              final isFavorite = favState.favorites.any(
                                 (c) => c.id == one.id,
                               );
 
                               return ListTile(
-                                leading: Image.network(one.image),
+                                leading: SizedBox(
+                                  width: 56,
+                                  height: 56,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      one.image,
+                                      fit: BoxFit.cover,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                            return const ColoredBox(
+                                              color: Colors.black12,
+                                              child: Icon(Icons.broken_image),
+                                            );
+                                          },
+                                    ),
+                                  ),
+                                ),
                                 title: Text(one.name),
                                 subtitle: Text(
                                   '${one.species} — ${one.status} - ${one.gender}',
@@ -130,26 +143,9 @@ class _CharacterScreenState extends State<CharacterScreen> {
                                         : Icons.favorite_border,
                                   ),
                                   onPressed: () {
-                                    if (isFavorite) {
-                                      final keyToDelete = favoritesBox.keys
-                                          .firstWhere(
-                                            (key) =>
-                                                favoritesBox.get(key)!.id ==
-                                                one.id,
-                                          );
-                                      favoritesBox.delete(keyToDelete);
-                                    } else {
-                                      favoritesBox.add(
-                                        FavoriteCharacterModel(
-                                          id: one.id,
-                                          name: one.name,
-                                          species: one.species,
-                                          status: one.status,
-                                          image: one.image,
-                                        ),
-                                      );
-                                    }
-                                    setState(() {});
+                                    context.read<FavoritesBloc>().add(
+                                      FavoritesToggled(one),
+                                    );
                                   },
                                 ),
                               );
